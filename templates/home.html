@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Famous Scientists</title>
+    <link rel="stylesheet" href="../static/main.css">
+  </head>
+  <body>
+    <header>
+      <h1><a id="title" href="{{url_for('startPage')}}">Awards in Science!</a></h1>
+      <div class="loginInfo">
+        {% if loginName %}
+        <div class="loginCheck">
+          <p class="name">{{loginName}}</p>
+          <a class="name" href="{{url_for('gdisconnect')}}">Log Out</a>
+        </div>
+          <img src="{{loginPic}}" class="miniPic">
+      </div>
+      {% else %}
+        <a class="linkButton" href="{{url_for('showLogin')}}">Login</a>
+      </div>
+      {% endif %}
+    </header>
+    <main>
+      <nav class="borders">
+        <h3 id="awards">Awards</h3>
+        <ul>
+          {% for a in awards %}
+          <li><a href="{{url_for('award', award_id=a.id)}}">{{a.name}}</a></li>
+          {% endfor %}
+        </ul>
+        {% if loginName %}
+        <a class="linkButton" href="{{url_for('newAward')}}">New Award!</a>
+        {% endif %}
+      </nav>
+      <section class="borders" id="info">
+        <h2> Welcome! </h2>
+          <p> This page is dedicated to the hard work of the men and women of SCIENCE.
+            Without them the world would be a very, very different place. Please look around and enjoy!</p>
+      </section>
+    </main>
+  </body>
+</html>

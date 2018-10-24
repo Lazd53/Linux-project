@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Famous Scientists</title>
+    <link rel="stylesheet" href="../../../../../static/main.css">
+  </head>
+  <body>
+    <header>
+      <h1><a id="title" href="{{url_for('startPage')}}">Awards in Science!</a></h1>
+      <div class="loginInfo">
+        <div class="loginCheck">
+          <p class="name">{{loginName}}</p>
+          <a class="name" href="{{url_for('gdisconnect')}}">Log Out</a>
+        </div>
+          <img src="{{loginPic}}" class="miniPic">
+      </div>
+    </header>
+    <main>
+      <nav class="borders">
+        <h3 id="awards">Awards</h3>
+        <ul>
+          {% for a in awards %}
+            {% if a.id == award.id %}
+            <li><a class="selectedAward" href="{{url_for('award', award_id=a.id)}}"><strong>{{a.name}}</strong></a></li>
+            {% else %}
+            <li><a href="{{url_for('award', award_id=a.id)}}">{{a.name}}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <section class="borders" id="info">
+        <h2> {{bio.name}} </h2>
+          <p> What happened? Do you really need to delete this person? Did they lose the trophy?</p>
+          <div class="center">
+            <form method="POST">
+              <button type='submit' name="delete">Oh yeah, they kinda sucked</button>
+            </form>
+            <br>
+            <a class="linkButton deleteButtons" href="{{url_for('bio', award_id = award.id, bio_id=bio.id)}}"> Nope, take me back</a>
+          </div>
+      </section>
+    </main>
+  </body>
+</html>

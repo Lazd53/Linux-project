@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Science Awards</title>
+    <link rel="stylesheet" href="../../static/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <h1><a  id="title" href="{{url_for('startPage')}}">Awards in Science!</a></h1>
+      <div class="loginInfo">
+        {% if loginName %}
+        <div class="loginCheck">
+          <p class="name">{{loginName}}</p>
+          <a class="name" href="{{url_for('gdisconnect')}}">Log Out</a>
+        </div>
+          <img src="{{loginPic}}" class="miniPic">
+      </div>
+      {% else %}
+        <a class="linkButton" href="{{url_for('showLogin')}}">Login</a>
+      </div>
+      {% endif %}
+    </header>
+    <main>
+      <nav>
+        <h3 id="awards">Awards</h3>
+        <ul>
+          {% for a in awards %}
+            {% if a.id == award.id %}
+            <li><a class="selectedAward" href="{{url_for('award', award_id=a.id)}}"><strong>{{a.name}}</strong></a></li>
+            {% else %}
+            <li><a href="{{url_for('award', award_id=a.id)}}">{{a.name}}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <section id="info">
+        <div id="topBar">
+          <h2>{{award.name}}</h2>
+          <div class="topLineOffset">
+            {% if loginName %}
+              <a href="{{url_for('editAward', award_id=award.id)}}">Edit</a><br>
+              <a href="{{url_for('deleteAward', award_id=award.id)}}">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+        <p>{{award.description}}</p>
+        <p> Winners include: </p>
+        <ul>
+          {% for bio in bios %}
+          <li><a href="{{url_for('bio', award_id=award.id, bio_id=bio.id)}}">{{bio.name}}, {{bio.year}}</a></li>
+          {% endfor %}
+        </ul>
+        {% if loginName %}
+        <a class="linkButton" href="{{url_for('newbio', award_id=award.id)}}">New Award Winner</a>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

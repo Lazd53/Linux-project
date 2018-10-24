@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Famous Scientists</title>
+    <link rel="stylesheet" href="../../static/main.css">
+  </head>
+  <body>
+    <header>
+      <h1><a id="title" href="{{url_for('startPage')}}">Awards in Science!</a></h1>
+      <div class="loginInfo">
+        <div class="loginCheck">
+          <p class="name">{{loginName}}</p>
+          <a class="name" href="{{url_for('gdisconnect')}}">Log Out</a>
+        </div>
+          <img src="{{loginPic}}" class="miniPic">
+      </div>
+    </header>
+    <main>
+      <nav class="borders">
+        <h3 id="awards">Awards</h3>
+        <ul>
+          {% for a in awards %}
+            {% if a.id == award.id %}
+            <li><a class="selectedAward" href="{{url_for('award', award_id=a.id)}}"><strong>{{a.name}}</strong></a></li>
+            {% else %}
+            <li><a href="{{url_for('award', award_id=a.id)}}">{{a.name}}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <section class="borders" id="info">
+        <h2> {{award.name}} </h2>
+          <p> Need to change something? Please fill out the below:</p>
+          <form action='#' method="post">
+            <label for="name">Name:</label>
+            <br>
+            <input type="text" placeholder="{{award.name}}" name="name">
+            <br>
+            <label for="description">Description:</label>
+            <br>
+            <textarea name="description" value="{{award.description}}"></textarea>
+            <br>
+            <button type="submit" id="submit">Submit</button>
+          </form>
+      </section>
+    </main>
+  </body>
+</html>
