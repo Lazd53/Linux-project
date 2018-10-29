@@ -62,7 +62,7 @@ SSH Port: 2200
   * Link git to github
   * Port over previous catalog project
   * create myapp.wsgi file, import scienceawards.py
-  * Create scienceawards.conf in apache2/sites-enabled/
+  * Create scienceawards.conf in apache2/sites-enabled/ (content of file per Flask documentation)
     * Point WSGIScriptAlias at var/www/html folder
   * Enable configuration (`a2enconf wsgi`)
   * Restart apache2
