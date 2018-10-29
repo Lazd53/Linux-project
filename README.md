@@ -11,7 +11,9 @@ This program will run a server that pushes a database driven website that will p
 
 ## Location
 URL: AJLLinuxProject.net
+
 IP address: 54.186.218.168
+
 SSH Port: 2200
 
 ## Built with
